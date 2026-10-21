@@ -24,7 +24,6 @@ export class CorebaseAuth {
           [HEADERS.apiKey]: config.apiKey,
           ...(config.origin && { [HEADERS.origin]: config.origin }),
         },
-        auth: { type: "Bearer", token: () => this.tokens.get() ?? undefined },
         onSuccess: async (ctx) => {
           const token = ctx.response.headers.get(TOKEN_RESPONSE_HEADER);
           if (token) await this.tokens.set(token);
