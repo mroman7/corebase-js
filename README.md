@@ -3,7 +3,7 @@
 JS/TS client for Corebase. Works on web and React Native.
 
 ```bash
-npm i corebase-js
+bun install corebase-js@github:mroman7/corebase-js#release
 ```
 
 ```ts
