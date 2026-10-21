@@ -19,6 +19,7 @@ export class CorebaseAuth {
     this.client = createAuthClient({
       baseURL: `${config.url}/${config.projectId}/auth`,
       fetchOptions: {
+        credentials: 'include',
         headers: {
           [HEADERS.apiKey]: config.apiKey,
           ...(config.origin && { [HEADERS.origin]: config.origin }),

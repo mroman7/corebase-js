@@ -10,7 +10,7 @@ type Row = Record<string, any>;
 type Filters = Record<string, any>;
 
 interface CorebaseConfig {
-    /** Backend base URL, e.g. https://api.corebase.dev */
+    /** App base URL, e.g. https://api.corebase.dev */
     url: string;
     /** Project this client is bound to. */
     projectId: string;

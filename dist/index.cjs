@@ -82,6 +82,7 @@ var CorebaseAuth = class {
     this.client = (0, import_client.createAuthClient)({
       baseURL: `${config.url}/${config.projectId}/auth`,
       fetchOptions: {
+        credentials: "include",
         headers: {
           [HEADERS.apiKey]: config.apiKey,
           ...config.origin && { [HEADERS.origin]: config.origin }

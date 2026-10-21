@@ -3,7 +3,7 @@ import { CorebaseError } from "./errors";
 import type { StorageAdapter } from "./types";
 
 export interface CorebaseConfig {
-  /** Backend base URL, e.g. https://api.corebase.dev */
+  /** App base URL, e.g. https://api.corebase.dev */
   url: string;
   /** Project this client is bound to. */
   projectId: string;
