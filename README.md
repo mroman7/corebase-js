@@ -3,17 +3,17 @@
 JS/TS client for Corebase. Works on web and React Native.
 
 ```bash
-npm i corebase-js
+npm i @romaandev/corebase-js
 ```
 
 ```ts
 import { createClient } from "corebase-js";
 
 export const corebase = createClient({
-  url: "https://api.yourapp.com",
+  url: "https://corebase.romaan.dev",
   projectId: "PROJECT_ID",
   apiKey: "PROJECT_SECRET",
-  // React Native: storage: AsyncStorage, origin: "https://yourapp.com"
+  // React Native: storage: AsyncStorage, origin: "https://corebase.romaan.dev"
 });
 ```
 
@@ -54,9 +54,4 @@ await corebase.tables.list();
 await corebase.tables.create({ tableName: "posts", columns: [{ name: "title", type: "TEXT" }] });
 await corebase.tables.alter("posts", { dropColumns: ["old"] });
 await corebase.tables.drop("posts");
-```
-
-## Publish
-```bash
-npm login && npm publish
 ```

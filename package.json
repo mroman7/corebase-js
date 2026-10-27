@@ -1,6 +1,6 @@
 {
-  "name": "corebase-js",
-  "version": "0.1.0",
+  "name": "@romaandev/corebase-js",
+  "version": "1.0.0",
   "description": "Official JS/React Native client for Corebase",
   "license": "MIT",
   "type": "module",
@@ -31,6 +31,27 @@
     "prepublishOnly": "npm run typecheck && npm run build",
     "prepare": "bun run build"
   },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Roman Tufail <mroman7>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mroman7/corebase-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mroman7/corebase-js/issues"
+  },
+  "homepage": "https://github.com/mroman7/corebase-js#readme",
+  "keywords": [
+    "corebase",
+    "baas",
+    "backend-as-a-service",
+    "javascript",
+    "react-native",
+    "sdk",
+    "client"
+  ],
   "dependencies": {
     "axios": "^1.20.0",
     "better-auth": "^1.7.12"
