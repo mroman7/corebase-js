@@ -1,18 +1,14 @@
 const seg = encodeURIComponent;
 
-/** Every backend path lives here. Change an endpoint once, it changes everywhere. */
+/**
+ * Every backend path lives here. Only routes that exist on the PUBLIC backend.
+ * (Schema management / RLS policies are dashboard-only and intentionally not here.)
+ */
 export function createRoutes(projectId: string) {
   const project = `/project/${seg(projectId)}`;
   const table = (name: string) => `${project}/table/${seg(name)}`;
 
   return {
-    tables: {
-      list: `${project}/tables`,
-      create: `${project}/table/create`,
-      metadata: (t: string) => `${table(t)}/metadata`,
-      alter: (t: string) => `${table(t)}/alter`,
-      drop: (t: string) => `${table(t)}/drop`,
-    },
     rows: {
       list: (t: string) => `${table(t)}/rows`,
       insert: (t: string) => `${table(t)}/insert`,

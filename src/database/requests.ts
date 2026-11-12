@@ -8,18 +8,20 @@ const requireTable = (s: QueryState): string => {
   return s.table;
 };
 
+/** update/delete work by id: .eq('id', value) */
 const requireId = (s: QueryState): string => {
-  const id = s.filters.id;
-  if (id === undefined || id === null) {
-    throw new CorebaseError(`${s.operation}() needs .where({ id: "..." }). Use ${s.operation}Many for bulk.`);
+  const f = s.filters.find(([col, op]) => col === "id" && op === "eq");
+  if (!f || f[2] === undefined || f[2] === null) {
+    throw new CorebaseError(`${s.operation}() needs .eq('id', value). Use ${s.operation}Many for bulk.`);
   }
-  return String(id);
+  return String(f[2]);
 };
 
-/** Query-string for GET rows. Adjust here if the backend expects a different filter format. */
+/** Backend expects: select, filters (JSON array of [col, op, value]), limit, offset, order ("col.asc"). */
 const selectParams = (s: QueryState) => ({
   select: s.columns,
-  ...s.filters,
+  ...(s.filters.length > 0 && { filters: JSON.stringify(s.filters) }),
+  ...((s.single !== "none" && s.limit === undefined) ? { limit: 1 } : {}),
   ...(s.limit !== undefined && { limit: s.limit }),
   ...(s.offset !== undefined && { offset: s.offset }),
   ...(s.order && { order: `${s.order.column}.${s.order.ascending ? "asc" : "desc"}` }),

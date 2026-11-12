@@ -2,8 +2,8 @@ import { CorebaseError, toCorebaseError } from "./errors";
 
 /** Every public async method resolves to this — it never throws. */
 export type Result<T> =
-  | { data: T; error: null }
-  | { data: null; error: CorebaseError };
+  | { data: T; error: null; count?: number | null }
+  | { data: null; error: CorebaseError; count?: null };
 
 export async function safe<T>(fn: () => Promise<T>): Promise<Result<T>> {
   try {

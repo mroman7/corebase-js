@@ -6,13 +6,11 @@ import { createRoutes } from "./core/routes";
 import { TokenStore } from "./core/token-store";
 import type { Row } from "./core/types";
 import { QueryBuilder } from "./database/query-builder";
-import { CorebaseTables } from "./database/tables";
 import { CorebaseStorage } from "./storage/storage";
 
 export class CorebaseClient {
   readonly auth: CorebaseAuth;
   readonly storage: CorebaseStorage;
-  readonly tables: CorebaseTables;
 
   private readonly http;
   private readonly routes;
@@ -26,7 +24,6 @@ export class CorebaseClient {
 
     this.auth = new CorebaseAuth(config, tokens);
     this.storage = new CorebaseStorage(this.http, this.routes, config);
-    this.tables = new CorebaseTables(this.http, this.routes);
   }
 
   /* Every entry point starts a fresh QueryBuilder. */

@@ -3,11 +3,11 @@ import { CorebaseError } from "./errors";
 import type { StorageAdapter } from "./types";
 
 export interface CorebaseConfig {
-  /** Backend base URL, e.g. https://api.corebase.dev */
+  /** Backend base URL, e.g. https://corebaseapi.romaan.dev */
   url: string;
   /** Project this client is bound to. */
   projectId: string;
-  /** Project secret / API key (sent as the `apikey` header). */
+  /** Project ANON (public) key, `pk_live_...`. Sent as the `apikey` header. Never use the secret `sk_live_` key here. */
   apiKey: string;
   /** Where the auth token is persisted. Defaults to localStorage, then memory. Pass AsyncStorage on React Native. */
   storage?: StorageAdapter;
