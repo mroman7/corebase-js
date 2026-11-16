@@ -5,7 +5,7 @@ const seg = encodeURIComponent;
  * (Schema management / RLS policies are dashboard-only and intentionally not here.)
  */
 export function createRoutes(projectId: string) {
-  const project = `/project/${seg(projectId)}`;
+  const project = `/app/${seg(projectId)}`;
   const table = (name: string) => `${project}/table/${seg(name)}`;
 
   return {
@@ -22,8 +22,8 @@ export function createRoutes(projectId: string) {
       table: (t: string) => `${table(t)}/metadata`,
     },
     storage: {
-      upload: "/f/upload",
-      file: (fileId: string) => `/f/${seg(fileId)}`,
+      upload: `/app/${seg(projectId)}/f/upload`,
+      file: (fileId: string) => `/app/${seg(projectId)}/f/${seg(fileId)}`,
     },
   } as const;
 }
