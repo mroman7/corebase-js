@@ -6,10 +6,12 @@ import { createRoutes } from "./core/routes";
 import { TokenStore } from "./core/token-store";
 import type { Row } from "./core/types";
 import { QueryBuilder } from "./database/query-builder";
+import { CorebaseSchema } from "./schema/schema";
 import { CorebaseStorage } from "./storage/storage";
 
 export class CorebaseClient {
   readonly auth: CorebaseAuth;
+  readonly schema: CorebaseSchema;
   readonly storage: CorebaseStorage;
 
   private readonly http;
@@ -23,6 +25,7 @@ export class CorebaseClient {
     this.routes = createRoutes(config.projectId);
 
     this.auth = new CorebaseAuth(config, tokens);
+    this.schema = new CorebaseSchema(this.http, this.routes);
     this.storage = new CorebaseStorage(this.http, this.routes, config);
   }
 

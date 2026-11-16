@@ -18,6 +18,9 @@ export function createRoutes(projectId: string) {
       delete: (t: string, id: string) => `${table(t)}/delete/${seg(id)}`,
       deleteMany: (t: string) => `${table(t)}/delete-many`,
     },
+    schema: {
+      table: (t: string) => `${table(t)}/metadata`,
+    },
     storage: {
       upload: "/f/upload",
       file: (fileId: string) => `/f/${seg(fileId)}`,
